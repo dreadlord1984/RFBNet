@@ -5,7 +5,7 @@ By Songtao Liu, Di Huang, Yunhong Wang
 ### Introduction
 Inspired by the structure of Receptive Fields (RFs) in human visual systems, we propose a novel RF Block (RFB) module, which takes the relationship between the size and eccentricity of RFs into account, to enhance the discriminability and robustness of features. We further  assemble the RFB module to the top of SSD with a lightweight CNN model, constructing the RFB Net detector. You can use the code to train/evaluate the RFB Net for object detection. For more details, please refer to our [arXiv paper](https://arxiv.org/pdf/1711.07767.pdf). 
 
-<img align="right" src="https://github.com/ruinmessi/RFBNet/blob/master/doc/rfb.png">
+<img align="right" src="https://github.com/ruinmessi/RFBNet/blob/master/doc/RFB.png">
 
 &nbsp;
 &nbsp;
@@ -18,8 +18,8 @@ Inspired by the structure of Receptive Fields (RFs) in human visual systems, we 
 | [R-FCN (ResNet-101)](https://github.com/daijifeng001/R-FCN)| 80.5| 9 |
 | [SSD300* (VGG16)](https://github.com/weiliu89/caffe/tree/ssd) | 77.2 | 46 |
 | [SSD512* (VGG16)](https://github.com/weiliu89/caffe/tree/ssd) | 79.8 | 19 |
-| RFBNet300 (VGG16) | **80.5** |**83\*** | 
-| RFBNet512 (VGG16) | **82.2** | **38\*** | 
+| RFBNet300 (VGG16) | **80.7** |**83** | 
+| RFBNet512 (VGG16) | **82.2** | **38** | 
 
 ### COCO 
 | System |  *test-dev mAP* | **Time** (Titan X Maxwell) |
@@ -29,20 +29,17 @@ Inspired by the structure of Receptive Fields (RFs) in human visual systems, we 
 | [SSD300* (VGG16)](https://github.com/weiliu89/caffe/tree/ssd) | 25.1 | 22ms |
 | [SSD512* (VGG16)](https://github.com/weiliu89/caffe/tree/ssd) | 28.8 | 53ms |
 | [RetinaNet500 (ResNet-101-FPN)](https://arxiv.org/pdf/1708.02002.pdf) | 34.4| 90ms|
-| RFBNet300 (VGG16) | **29.9** |**15ms\*** | 
-| RFBNet512 (VGG16) | **33.8** | **30ms\*** |
-| RFBNet512-E (VGG16) | **34.4** | **33ms\*** |  
+| RFBNet300 (VGG16) | **30.3** |**15ms** | 
+| RFBNet512 (VGG16) | **33.8** | **30ms** |
+| RFBNet512-E (VGG16) | **34.4** | **33ms** |  
 
-
-*Note*: **\*** The speed here is tested on the newest pytorch and cudnn version (0.2.0 and cudnnV6), which is obviously faster than the speed reported in the paper (using pytorch-0.1.12 and cudnnV5).
 
 ### MobileNet
 |System |COCO *minival mAP*| **\#parameters**|
 |:-------|:-----:|:-------:|
 |[SSD MobileNet](https://arxiv.org/abs/1704.04861)| 19.3| 6.8M|
-|RFB MobileNet| 20.7\* | 7.4M|
+|RFB MobileNet| 20.7 | 7.4M|
 
-\*: slightly better than the original ones in the paper (20.5). 
 
 ### Citing RFB Net
 Please cite our paper in your publications if it helps your research:
@@ -62,9 +59,9 @@ Please cite our paper in your publications if it helps your research:
 5. [Models](#models)
 
 ## Installation
-- Install [PyTorch-0.2.0](http://pytorch.org/) by selecting your environment on the website and running the appropriate command.
+- Install [PyTorch-0.4.0](http://pytorch.org/) by selecting your environment on the website and running the appropriate command.
 - Clone this repository. This repository is mainly based on [ssd.pytorch](https://github.com/amdegroot/ssd.pytorch) and [Chainer-ssd](https://github.com/Hakuyume/chainer-ssd), a huge thank to them.
-  * Note: We currently only support Python 3+.
+  * Note: We currently only support PyTorch-0.4.0 and Python 3+.
 - Compile the nms and coco tools:
 ```Shell
 ./make.sh
@@ -72,10 +69,6 @@ Please cite our paper in your publications if it helps your research:
 *Note*: Check you GPU architecture support in utils/build.py, line 131. Default is:
 ``` 
 'nvcc': ['-arch=sm_52',
-```
-- Install [pyinn](https://github.com/szagoruyko/pyinn) for MobileNet backbone:
-```Shell
-pip install git+https://github.com/szagoruyko/pyinn.git@master
 ```
 - Then download the dataset by following the [instructions](#download-voc2007-trainval--test) below and install opencv. 
 ```Shell
@@ -146,7 +139,7 @@ By default, it will directly output the mAP results on VOC2007 *test* or COCO *m
 
 ## Models
 
-* 07+12 [RFB_Net300](https://drive.google.com/open?id=1V3DjLw1ob89G8XOuUn7Jmg_o-8k_WM3L), [BaiduYun Driver](https://pan.baidu.com/s/1bplRosf)
+* 07+12 [RFB_Net300](https://drive.google.com/open?id=1apPyT3IkNwKhwuYyp432IJrTd0QHGbIN), [BaiduYun Driver](https://pan.baidu.com/s/1xOp3_FDk49YlJ-6C-xQfHw)
 * COCO [RFB_Net512_E](https://drive.google.com/open?id=1pHDc6Xg9im3affOr7xaimXaRNOHtbaPM), [BaiduYun Driver](https://pan.baidu.com/s/1o8dxrom)
 * COCO [RFB_Mobile Net300](https://drive.google.com/open?id=1vmbTWWgeMN_qKVWOeDfl1EN9c7yHPmOe), [BaiduYun Driver](https://pan.baidu.com/s/1bp4ik1L)
 
